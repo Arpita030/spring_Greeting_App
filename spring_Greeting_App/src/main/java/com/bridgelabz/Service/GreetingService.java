@@ -69,6 +69,10 @@ public class GreetingService {
             return greetingRepository.save(greeting);
         }).orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
     }
-
-    
+    public void deleteGreeting(Long id) {
+        if (!greetingRepository.existsById(id)) {
+            throw new RuntimeException("Greeting not found with id: " + id);
+        }
+        greetingRepository.deleteById(id);
+    }
 }
